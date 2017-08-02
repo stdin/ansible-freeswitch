@@ -1,0 +1,35 @@
+---
+sudo: required
+dist: trusty
+
+language: python
+python: "2.7"
+
+env:
+  - ANSIBLE_VERSION=latest
+
+branches:
+  only:
+    - master
+    - develop
+
+before_install:
+  - sudo apt-get update -qq
+
+install:
+  # Install Ansible.
+  - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install ansible; else pip install ansible==$ANSIBLE_VERSION; fi
+  - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install ansible-lint; fi
+
+script:
+  # Check the role/playbook's syntax.
+  - ansible-playbook -vv -i tests/inventory tests/test.yml --syntax-check
+
+  # Run the role/playbook with ansible-playbook.
+  - ansible-playbook -i tests/inventory -vv --connection=local --sudo tests/test.yml
+
+  # check if freeswitch package was installed
+  - dpkg -l freeswitch 2>&1 | grep -q "no packages found" && (echo "freeswitch not installed" && exit 1) || (echo "freeswitch installed" && exit 0)
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
