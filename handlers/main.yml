@@ -1,0 +1,6 @@
+---
+- name: restart freeswitch
+  service: name=freeswitch state=restarted
+
+- name: reload freeswitch
+  command: "fs_cli -x reloadxml"

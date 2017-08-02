@@ -1,0 +1,24 @@
+galaxy_info:
+  author: Slava Yanson
+  description: Install and configure FreeSwitch 1.6 (or unstable) using packages.
+  company: apeiron.io
+
+  license: MIT
+
+  min_ansible_version: 2.0
+
+  platforms:
+    - name: Debian
+      versions:
+        - jessie
+    - name: Ubuntu
+      versions:
+        - trusty
+        - xenial
+
+  galaxy_tags:
+    - system
+    - voip
+    - freeswitch
+
+dependencies: []
