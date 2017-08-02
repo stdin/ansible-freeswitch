@@ -1,0 +1,17 @@
+---
+- hosts: all
+  become: true
+  gather_facts: False
+  pre_tasks:
+    - name: Install Python for Ansible
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+      changed_when: False
+    - setup: # aka gather_facts
+  roles:
+    - role: .
+      freeswitch_install_modules:
+        - python
+        - xml-curl
+      freeswitch_enable_modules:
+        - mod_python
+        - mod_xml

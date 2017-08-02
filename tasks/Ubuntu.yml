@@ -1,0 +1,39 @@
+---
+- name: "Add FreeSwitch repository key"
+  apt_key:
+    url: "{{ freeswitch_repo_ubuntu_trusty }}/freeswitch_archive_g0.pub"
+    state: present
+  when: ansible_distribution_release == 'trusty'
+
+- name: "Add FreeSwitch repository key"
+  apt_key:
+    url: "{{ freeswitch_repo_ubuntu_xenial }}/freeswitch_archive_g0.pub"
+    state: present
+  when: ansible_distribution_release == 'xenial'
+
+- name: Add FreeSwitch repository
+  apt_repository:
+    repo: "deb {{ freeswitch_repo_ubuntu_trusty }} {{ ansible_distribution_release }} main"
+    state: present
+    filename: freeswitch
+  when: ansible_distribution_release == 'trusty'
+
+- name: Add FreeSwitch repository
+  apt_repository:
+    repo: "deb {{ freeswitch_repo_ubuntu_xenial }} {{ ansible_distribution_release }} main"
+    state: present
+    filename: freeswitch
+  when: ansible_distribution_release == 'xenial'
+
+- name: Install vanilla FreeSwitch
+  apt:
+    name: "{{ freeswitch_apt_package }}"
+    state: latest
+    update_cache: yes
+
+- name: Install additional FreeSwitch modules
+  apt:
+    name: "freeswitch-mod-{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items: "{{ freeswitch_install_modules }}"

@@ -1,0 +1,11 @@
+---
+- include: "{{ ansible_distribution }}.yml"
+
+- name: Enable FreeSwitch modules
+  replace:
+    path: /etc/freeswitch/autoload_configs/modules.conf.xml
+    regexp: '(\s+)<!-- <load module="{{ item }}"/> -->(\s+.*)?$'
+    replace: '\1<load module="{{ item }}"/>\2'
+    backup: yes
+  with_items: "{{ freeswitch_enable_modules }}"
+  notify: 'restart freeswitch'

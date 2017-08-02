@@ -1,0 +1,24 @@
+---
+- name: "Add FreeSwitch repository key"
+  apt_key:
+    url: "{{ freeswitch_repo_debian_jessie }}/freeswitch_archive_g0.pub"
+    state: present
+
+- name: Add FreeSwitch repository
+  apt_repository:
+    repo: "deb {{ freeswitch_repo_debian_jessie }} {{ ansible_distribution_release }} main"
+    state: present
+    filename: freeswitch
+
+- name: Install vanilla FreeSwitch
+  apt:
+    name: "{{ freeswitch_apt_package }}"
+    state: latest
+    update_cache: yes
+
+- name: Install additional FreeSwitch modules
+  apt:
+    name: "freeswitch-mod-{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items: "{{ freeswitch_install_modules }}"
