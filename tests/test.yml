@@ -2,7 +2,7 @@
 - hosts: all
   become: true
   roles:
-    - ansible-freeswitch
+    - role: ansible-freeswitch
       freeswitch_install_modules:
         - python
         - xml-curl
