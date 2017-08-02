@@ -1,6 +1,10 @@
 ansible-freeswitch
 =========
 
+[![Build Status](https://travis-ci.org/stdin/ansible-freeswitch.svg)](https://travis-ci.org/mwolff44/freeswitch-mw)
+[![Galaxy](http://img.shields.io/badge/galaxy-stdin.ansible-blue.svg?style=flat-square)](https://galaxy.ansible.com/stdin/freeswitch/)
+
+
 Install and configure FreeSwitch 1.6 using packages.
 
 Supported OS

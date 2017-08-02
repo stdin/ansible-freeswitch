@@ -1,4 +1,12 @@
 ---
 - hosts: all
+  become: true
   roles:
     - ansible-freeswitch
+      freeswitch_install_modules:
+        - python
+        - xml-curl
+      freeswitch_enable_modules:
+        - mod_python
+        - mod_xml
+
