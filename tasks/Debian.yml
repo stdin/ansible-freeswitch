@@ -1,12 +1,12 @@
 ---
 - name: "Add FreeSwitch repository key"
   apt_key:
-    url: "{{ freeswitch_repo_debian_jessie }}/freeswitch_archive_g0.pub"
+    url: "{{ freeswitch_repo_debian }}/fsstretch-archive-keyring.asc"
     state: present
 
 - name: Add FreeSwitch repository
   apt_repository:
-    repo: "deb {{ freeswitch_repo_debian_jessie }} {{ ansible_distribution_release }} main"
+    repo: "deb {{ freeswitch_repo_debian }} {{ ansible_distribution_release }} main"
     state: present
     filename: freeswitch
 

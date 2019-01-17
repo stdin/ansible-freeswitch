@@ -1,14 +1,14 @@
 ---
-freeswitch_version: 1.6
+freeswitch_version: 1.8
 
 freeswitch_apt_package: "freeswitch-meta-vanilla"
 
 freeswitch_repo: "http://files.freeswitch.org/repo"
 
-freeswitch_repo_ubuntu_trusty: "{{ freeswitch_repo }}/ubuntu/freeswitch-{{ freeswitch_version }}/"
-freeswitch_repo_ubuntu_xenial: "{{ freeswitch_repo }}/ubuntu-1604/freeswitch-{{ freeswitch_version }}/"
+freeswitch_repo_ubuntu_trusty: "{{ freeswitch_repo }}/ubuntu/freeswitch-{{ freeswitch_version }}"
+freeswitch_repo_ubuntu_xenial: "{{ freeswitch_repo }}/ubuntu-1604/freeswitch-{{ freeswitch_version }}"
 
-freeswitch_repo_debian_jessie: "{{ freeswitch_repo }}/deb/freeswitch-{{ freeswitch_version }}/"
+freeswitch_repo_debian: "{{ freeswitch_repo }}/deb/freeswitch-{{ freeswitch_version }}"
 
 freeswitch_install_modules: []
 freeswitch_enable_modules: []
