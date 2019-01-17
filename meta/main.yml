@@ -1,6 +1,6 @@
 galaxy_info:
   author: Slava Yanson
-  description: Install and configure FreeSwitch 1.6 (or unstable) using packages.
+  description: Install and configure FreeSwitch 1.8 using packages.
   company: apeiron.io
 
   license: MIT
@@ -11,6 +11,7 @@ galaxy_info:
     - name: Debian
       versions:
         - jessie
+        - stretch
     - name: Ubuntu
       versions:
         - trusty
